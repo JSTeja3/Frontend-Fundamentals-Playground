@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--"stylesheet" is a keyword and "rel" tells the html has relation called stylesheet-->
+    <link rel="stylesheet" href="style.css">
+    <title>HTML Foundation Playground</title>
+</head>
+
+<body>
+
+    <header>
+        <!--Heading of page-->
+        <h1>Frontend Fundamentals Playground</h1>
+
+        <!--Paragraph-->
+        <p>
+            A simple page created to practice HTML structure and fundamental elements.
+        </p>
+
+        <!--Navigation-->
+        <nav>
+            <!--Hyperlink-->
+            <a href="#home">Home</a><!--#home represents in-page anchor/fragment identifier that tells to navigate to home section-->
+            <a href="#profile">Profile</a>
+            <a href="#products">Products</a>
+            <a href="#registration">Registration</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section id="home">
+            <!--Heading inside home page lets say Page Heading-->
+            <h2>Welcome to My HTML Playground</h2>
+
+            <p>
+                This page is built using only HTML. The goal is to understand how
+                different HTML elements are structured and used together to create
+                a complete webpage.
+            </p>
+
+            <p>
+                Throughout this page, you will find examples of semantic elements,
+                headings, paragraphs, links, images, tables, forms, and more.
+            </p>
+
+            <!--Subheading-->
+            <h3>What You Can Explore</h3>
+
+            <!--Unordered List-->
+            <ul>
+                <!--Individual list item-->
+                <li>Semantic HTML elements</li>
+                <li>Profile information</li>
+                <li>Product data using tables</li>
+                <li>Forms and different input types</li>
+                <li>Links and navigation</li>
+            </ul>
+
+            <p>
+                Learn more about HTML at
+                <!--Navigates to different webpage in same tab-->
+                <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
+                    MDN Web Docs
+                </a>.
+            </p>
+
+        </section>
+
+        <section id="profile">
+
+            <h2>Profile Card</h2>
+
+            <!--Self contained piece of content, later we can add for Sarah, John etc-->
+            <article>
+                <!--"alt" is a textual description of image also helps when image fails to load-->
+                <img src="https://picsum.photos/150" alt="Profile placeholder">
+
+                <h3>Alex Johnson</h3>
+
+                <p class="profile-description">
+                    Alex is a fictional frontend developer who enjoys building
+                    simple and accessible web applications.
+                </p>
+
+                <h4>Skills</h4>
+
+                <!--When order doesn't matter - unordered list-->
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+
+                <h4>Current Learning Goals</h4>
+
+                <!--When order matters - ordered list-->
+                <ol>
+                    <li>Understand semantic HTML</li>
+                    <li>Learn CSS layouts</li>
+                    <li>Build interactive pages with JavaScript</li>
+                </ol>
+
+            </article>
+
+        </section>
+
+        <section id="products">
+
+            <h2>Products Table</h2>
+
+            <p>
+                Below is a list of fictional products used to practice HTML tables.
+            </p>
+
+            <!--Table-->
+            <table>
+
+                <!--Table Heading-->
+                <thead>
+
+                    <!--Row of table-->
+                    <tr>
+
+                        <!--Table header cell-->
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <!--Main table data-->
+                <tbody>
+                    <tr>
+
+                        <!--Normal data cell-->
+                        <td>P001</td>
+                        <td>Wireless Keyboard</td>
+                        <td>Electronics</td>
+                        <td>$50</td>
+                        <td>Available</td>
+                    </tr>
+
+                    <tr>
+                        <td>P002</td>
+                        <td>Notebook</td>
+                        <td>Stationery</td>
+                        <td>$10</td>
+                        <td>Available</td>
+                    </tr>
+
+                    <tr>
+                        <td>P003</td>
+                        <td>Desk Lamp</td>
+                        <td>Home Office</td>
+                        <td>$35</td>
+                        <td>Out of Stock</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <section id="registration">
+
+            <h2>Registration Form</h2>
+
+            <p>
+                Fill in the form below to practice different HTML form elements.
+            </p>
+
+            <!--Form is a section where different types of inputs can be added-->
+            <form>
+
+                <div>
+                    <!--label just a text value that describes or identifies a form control.-->
+                    <!--"for=" represents to input "id="-->
+                    <label for="fullName">Full Name:</label>
+                    <!--Tells input is just text value-->
+                    <!--id → uniquely identifies the HTML element and connects it to the <label>-->
+                    <!--name → identifies the field when form data is submitted(access from backend when submitted)-->
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+                </div>
+
+                <!--Tells to break line-->
+                <br>
+
+                <div>
+                    <label for="email">Email:</label>
+                    <!--Tells input is just email value-->
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="password">Password:</label>
+                    <!--Tells input is just password value, so hides input on screen-->
+                    <input type="password" id="password" name="password" placeholder="Enter a password">
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="birthDate">Date of Birth:</label>
+                    <!--Tells input is a date-->
+                    <input type="date" id="birthDate" name="birthDate">
+                </div>
+
+                <br>
+
+                <div>
+                    <p>Gender:</p>
+
+                    <!--Tells input is radio and having same name tells all the radio inputs with the same name belong to a single group-->
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
+
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">Other</label>
+                </div>
+
+                <br>
+
+                <div>
+                    <!--Tells input type is checkbox-->
+                    <input type="checkbox" id="terms" name="terms">
+
+                    <label for="terms">
+                        I agree to the terms and conditions
+                    </label>
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="experience">Experience Level:</label>
+
+                    <!--Tells input type is dropdown-->
+                    <select id="experience" name="experience">
+                        <option value="">Select an option</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="message">Tell us about yourself:</label>
+
+                    <br>
+                    <!--Tells Multi-line text input; rows and cols provide initial dimensions-->
+                    <textarea id="message" name="message" rows="5" cols="30"
+                        placeholder="Write something about yourself"></textarea>
+                </div>
+
+                <br>
+
+                <!--Tells input is a submit and reset type buttons-->
+                <button type="submit">Register</button>
+                <button type="reset">Clear Form</button>
+
+            </form>
+
+        </section>
+
+        <section id="contact">
+
+            <h2>Contact</h2>
+
+            <p>
+                This is a fictional contact section created for HTML practice.
+            </p>
+
+            <!--contact information related to nearest article or page-->
+            <address>
+                <p>
+                    Email:
+                    <!--Clicking on it will navigate to default mail application-->
+                    <a href="mailto:alex@example.com">
+                        alex@example.com
+                    </a>
+                </p>
+
+                <p>
+                    Phone:
+                    <!--Clicking on number will open phone app in mobile-->
+                    <a href="tel:+1234567890">
+                        +1 234 567 890
+                    </a>
+                </p>
+            </address>
+
+            <p>
+                Visit our
+                <a href="#home">Home section</a>
+                to return to the top of the page.
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <p>
+            <!--&copy; represent © character-->
+            &copy; 2026 Frontend Fundamentals Playground.
+            Built for learning and practice.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
