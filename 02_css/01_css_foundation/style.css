@@ -121,26 +121,65 @@ p{
 #products{
     border: 4px dashed gray;
 }
+/*"border-collapse"-helps merge the borders into one and priority-double, solid, dashed, dotted, ridge, outset, groove, inset, hidden*/
 table {
     border-collapse: collapse;
 }
-
-thead {
-    background-color: lightgray;
+thead tr{/*thead is a group of elements so if directly given CSS it might not render*/
+    border: 2px double red;
 }
-
-thead th {
-    border-top: 2px solid brown;
-    border-bottom: 2px solid brown;
-}
-
-thead th:first-child {
-    border-left: 2px solid brown;
-}
-
-thead th:last-child {
-    border-right: 2px solid brown;
+tbody td{
+    border:2px solid gray;
 }
 /*none-is also a border style along with solid, dashed, dotted, double*/
+/*border-radius creates rounded corners*/
+#profile{
+    border-radius: 10px; /*border-radius: 50%*/
+}
+/*"border-box"-tells that the width 400px should include padding and border if not given then total profile width is 400+2*20+2*10=460px*/
+#profile {
+    box-sizing: border-box;
+    width: 400px;
+    padding: 20px;
+    border: 10px solid black;
+    margin: 30px;
+}
+/*display*/
+/*A "block" element generally:
+1.starts on a new line
+2.takes available horizontal space
+3.allows width and height to be controlled*/
+nav a{
+    display: block;
+}
+/*"inline":
+1.Inline elements sit alongside each other
+2.They generally don't behave like full-width blocks.*/
+nav a{
+    display: inline;
+}
+/*"inlince-block":
+1.Inline+box-like sizing
+2.Links can remain beside each other while allowing padding, width, height, etc. to behave more like a box.*/
+nav a{
+    display:inline-block;
+}
+/*"none":
+1.The Contact section completely disappears.
+2.It's not merely invisible—the element is removed from the layout.
+3.This is different from:
+visibility: hidden;
+which we'll encounter later.
 
+#contact {
+    display: none;
+}
+*/
+nav a {
+    display: inline;
+    background-color: yellow;
+    width: 120px;
+    padding: 20px;
+    margin: 10px;
+}
 
