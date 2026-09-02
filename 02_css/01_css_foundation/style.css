@@ -175,11 +175,94 @@ which we'll encounter later.
     display: none;
 }
 */
-nav a {
-    display: inline;
-    background-color: yellow;
-    width: 120px;
-    padding: 20px;
-    margin: 10px;
+/* Difference: inline vs inline-block:                   -GFG
+1.Both sit in line
+2.Padding and margin changes are limited to left/right in inline but not in inline-block
+3.inline behaves like a text vs inline-block behaves like box in a line*/
+
+/*"postion:static" is a default */
+.profile-description {
+    position: static;
+}
+/*"relative"-moves the element with respect to its static position without chaging its boundaries like margin making the overlapping effect*/
+/*#profile {
+    position: relative;
+    left: 100px;
+    top: 60px; 
+}-try this for clarity*/
+/*"absolute"-An absolutely positioned element is removed from the normal document flow and place it seperately*/
+/*#profile {
+    position: absolute;
+}*/
+/*absolut&relative-once relative is determined in parent it becomes a reference point to child absolute element and placing the child relative to parent*/
+#registration{
+    position:relative;
+}
+#submitbtn{
+    position:absolute;
+    right:120px;
+    bottom:20px;
+}
+#resetbtn{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+}
+/*"fixed"-Position relative to the browser viewport and remains fixed even during scroll*/
+/*nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}*/
+/*"sticky"-remains normal until the scroll of page moves beyond the threshold and then sticks at top like fixed*/
+/*Move nav outside header to test as nav can be constrained by parent/container boundaries*/
+nav {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border: 2px solid red;
 }
 
+/*"overflow" controls what happens when content doesn't fit inside an element's box.*/
+/*"visible"-default*/
+.overflow-box {
+    width: 200px;
+    height: 50px;
+    border: 2px solid black;
+    overflow: visible;
+}
+/*"hidden"-hides the portion that crosses the box*/
+.overflow-box {
+    width: 200px;
+    height: 50px;
+    border: 2px solid black;
+    overflow: hidden;
+}
+/*"scroll"-provides scroll to read hidden text*/
+.overflow-box {
+    width: 200px;
+    height: 50px;
+    border: 2px solid black;
+    overflow: scroll;
+}
+/*"auto"-the browser decides if scroll is needed*/
+.overflow-box {
+    width: 200px;
+    height: 50px;
+    border: 2px solid black;
+    overflow: auto;
+}
+/* 
+overflow-x: auto;
+overflow-y: hidden;
+
+Can be used to control horizontal and vertical scroll seperately */
+.overflow-box {
+    width: 200px;
+    height: 50px;
+    border: 2px solid black;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}

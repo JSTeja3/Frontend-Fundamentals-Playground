@@ -21,9 +21,11 @@
         </p>
 
         <!--Navigation-->
+        <!--Move outside header to test position:sticky-->
         <nav>
             <!--Hyperlink-->
-            <a href="#home">Home</a><!--#home represents in-page anchor/fragment identifier that tells to navigate to home section-->
+            <a
+                href="#home">Home</a><!--#home represents in-page anchor/fragment identifier that tells to navigate to home section-->
             <a href="#profile">Profile</a>
             <a href="#products">Products</a>
             <a href="#registration">Registration</a>
@@ -31,6 +33,7 @@
         </nav>
 
     </header>
+
 
     <main>
 
@@ -271,8 +274,8 @@
                 <br>
 
                 <!--Tells input is a submit and reset type buttons-->
-                <button type="submit">Register</button>
-                <button type="reset">Clear Form</button>
+                <button id="submitbtn" type="submit">Register</button>
+                <button id="resetbtn" type="reset">Clear Form</button>
 
             </form>
 
@@ -312,8 +315,11 @@
             </p>
 
         </section>
-
-    </main>
+        <div class="overflow-box">
+            This is a very long piece of text that will not fit inside this small box. So we testing the overflow property to check how it works.
+        </div>
+        
+        </main>
 
     <footer>
 
