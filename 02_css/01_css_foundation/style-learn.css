@@ -266,3 +266,36 @@ Can be used to control horizontal and vertical scroll seperately */
     overflow-y: hidden;
     white-space: nowrap;
 }
+/*"flex"-here element becomes flex container and inner child elements like <a> becomes flex items*/
+/*default direction is horizontal but if given as "column" then makes it vertical*/
+/*"justify-content"-controls how flex items are position/distributed along main axis*/
+/*"justify-content:center"-places elements at center of axis*/
+/*"justify-content:flex-start"-places element at start*/ 
+/*"justify-content:flex-end"-places element at end*/ 
+/*"justify-content:space-between"-places first item at start and last item at end and distributes other elements between them*/
+/*"justify-content:space-around"-each item gets space around it and each item has same space on its left and right making space at edges small*/
+/*"justify-content:space-evenly"-each item is evenly placed*/
+/* nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+} */
+/*"align-items"-works for cross axis, if justify-content works on x axis align-items works on y axis*/
+/*"align-items:center"-places elements at center of axis*/
+/*"align-items:flex-start"-places element at start*/ 
+/*"align-items:flex-end"-places element at end*/ 
+/*"align-items:space-between"-places first item at start and last item at end and distributes other elements between them*/
+/*"align-items:space-around"-each item gets space around it and each item has same space on its left and right making space at edges small*/
+/*"align-items:space-evenly"-each item is evenly placed*/
+nav{
+    display:flex;
+    flex-direction: row;
+    height: 100px;
+}
+/*"gap"- instead of giving margin or padding for every link we can use gap that places gap between each element in container*/
+/*"row-gap"-if multiple rows are present then it adjust space between each row*/
+/*"column-gap"-works as normal gap between each element-useful in flex-wrap*/
+nav{
+    display:flex;
+    gap: 10px 30px;
+}
