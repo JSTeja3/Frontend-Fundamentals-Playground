@@ -379,5 +379,70 @@ nav {
 .product-card {
     flex: 1;
 }
+/*"display:grid"-two dimentional layout*/
+/*grid-template-columns:1fr 1fr 1fr tells the number of columns and what fraction should each column occupy*/
+/*200px 1fr 1fr; can also be given determining the size*/
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.grid-item {
+    border: 2px solid black;
+    padding: 20px;
+}
+/*grid-template-columns if defines three as below but more items are present then the more items will be moved to next row*/
+/*"grid-template-rows: 100px 200px;"-defines first row being 100px and 2nd row being 200px*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 200px;
+}
+/*"grid-template-rows: 1fr 2fr;"-means first row takes 1 fraction and 2nd row takes 2 fraction bu the height needs to be defined*/ 
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr;
+    height: 400px;
+}
+/*gap-creates space between grid tracks*/
+/*"gap: 30px 10px;" means row gap and column gap*/
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr;
+    height: 400px;
+    gap: 30px 10px;
+    /*gap: 20px;*/
+}
+/*By default the extra item will be placed in next row first cell since we defined only three columns*/
+/*so we use grid-column - which defines the position of item*/ 
+/*grid-column: 1 / 4; when we define three columns there are 4 grid lines and we mention the start at 1 line of the 4*/
+/*instead of define 4 or 5 based on grid lines we can give directly 1/-1 -1 meaning end grid line*/
+/*if 2/4 given it starts at 2nd grid line */
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /*or repeat(3, 1fr);*/
+    gap: 20px;
+}
+
+.dashboard-card {
+    border: 2px solid black;
+    padding: 20px;
+}
+
+.dashboard-main {
+    border: 2px solid black;
+    padding: 20px;
+    grid-column: 1/-1;
+}
+/*@media section makes the browser responsive whe broswer changes size*/
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
 
 
