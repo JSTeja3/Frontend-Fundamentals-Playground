@@ -744,23 +744,403 @@ Conceptually:
 ```
 The sidebar has a starting basis while the main content grows to consume the remaining space.
 
-### 25. Current Practice Page
+## 25. CSS Grid
 
-The page currently combines CSS fundamentals and Flexbox experiments into one practice/revision page.
+CSS Grid is a two-dimensional layout system.
 
-It includes examples involving:
+Unlike Flexbox, which primarily deals with one dimension at a time, Grid can control both rows and columns.
 
-- Sticky header
-- Flexbox navigation
-- Product cards
-- Centered content
-- Sidebar + main content
-- Forms
-- Tables
-- Overflow
-- Typography
-- Spacing
-- Borders
-- Selectors
+```text
+Rows
+ +
+Columns
+ =
+Two-dimensional layout
+```
+
+A Grid container is created using:
+
+```css
+.container {
+    display: grid;
+}
+```
+
+The direct children of the container become Grid items.
+
+---
+
+## 26. `grid-template-columns`
+
+Defines the columns of the Grid.
+
+Example:
+
+```css
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+This creates three equal columns:
+
+```text
+┌──────────┬──────────┬──────────┐
+│ Column 1 │ Column 2 │ Column 3 │
+└──────────┴──────────┴──────────┘
+```
+
+---
+
+## 27. The `fr` Unit
+
+`fr` means a fraction of the available Grid space.
+
+Example:
+
+```css
+grid-template-columns: 1fr 1fr 1fr;
+```
+
+The available space is divided into three equal parts.
+
+```text
+1fr + 1fr + 1fr
+       ↓
+  3 equal parts
+```
+
+Different proportions can also be used:
+
+```css
+grid-template-columns: 2fr 1fr 1fr;
+```
+
+The total is:
+
+```text
+2 + 1 + 1 = 4fr
+```
+
+Therefore:
+
+- First column gets 2 parts
+- Second column gets 1 part
+- Third column gets 1 part
+
+Example:
+
+```text
+┌────────────────┬────────┬────────┐
+│                │        │        │
+│      2fr       │  1fr   │  1fr   │
+│                │        │        │
+└────────────────┴────────┴────────┘
+```
+
+---
+
+## 28. `grid-template-rows`
+
+Defines the rows of the Grid.
+
+Example:
+
+```css
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 200px;
+}
+```
+
+This creates:
+
+```text
+┌──────────┬──────────┬──────────┐
+│          │          │          │
+│  Row 1   │  Row 1   │  Row 1   │  100px
+│          │          │          │
+├──────────┼──────────┼──────────┤
+│          │          │          │
+│          │          │          │
+│  Row 2   │  Row 2   │  Row 2   │  200px
+│          │          │          │
+└──────────┴──────────┴──────────┘
+```
+
+Rows can also use `fr`:
+
+```css
+grid-template-rows: 1fr 2fr;
+```
+
+When the Grid container has a defined height, the available height can be divided according to the fraction values.
+
+---
+
+## 29. `gap`
+
+Creates space between Grid rows and columns.
+
+Example:
+
+```css
+.grid-container {
+    display: grid;
+    gap: 20px;
+}
+```
+
+This creates equal spacing between both rows and columns.
+
+Row and column gaps can also be controlled separately:
+
+```css
+row-gap: 30px;
+column-gap: 10px;
+```
+
+Or using the shorthand:
+
+```css
+gap: 30px 10px;
+```
+
+The order is:
+
+```text
+gap: row-gap column-gap;
+```
+
+So:
+
+```css
+gap: 30px 10px;
+```
+
+means:
+
+- 30px between rows
+- 10px between columns
+
+---
+
+## 30. Grid Lines
+
+Grid uses numbered lines to define the boundaries of columns and rows.
+
+For three columns:
+
+```text
+Grid lines:
+
+    1          2          3          4
+    │          │          │          │
+    ├──────────┼──────────┼──────────┤
+    │ Column 1 │ Column 2 │ Column 3 │
+    └──────────┴──────────┴──────────┘
+```
+
+The columns are the spaces between the lines.
+
+This becomes important when positioning individual Grid items.
+
+---
+
+## 31. `grid-column`
+
+`grid-column` controls where an individual Grid item starts and ends across columns.
+
+Example:
+
+```css
+.dashboard-main {
+    grid-column: 1 / 4;
+}
+```
+
+This means:
+
+> Start at Grid line 1 and end at Grid line 4.
+
+Therefore, the item spans all three columns.
+
+A useful alternative is:
+
+```css
+.dashboard-main {
+    grid-column: 1 / -1;
+}
+```
+
+`-1` represents the last Grid line.
+
+This is useful when the number of columns may change.
+
+---
+
+## 32. `repeat()`
+
+The `repeat()` function provides a shorter way to define repeated Grid tracks.
+
+Instead of:
+
+```css
+grid-template-columns: 1fr 1fr 1fr;
+```
+
+we can write:
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+Both produce three equal columns.
+
+```text
+1fr 1fr 1fr
+
+      ↓
+
+repeat(3, 1fr)
+```
+
+---
+
+## 33. Dashboard Layout
+
+A small dashboard was created to combine the Grid concepts.
+
+The target layout was:
+
+```text
+┌────────────┬────────────┬────────────┐
+│  Card 1    │  Card 2    │  Card 3    │
+├────────────┴────────────┴────────────┤
+│                                      │
+│             Main Section             │
+│                                      │
+└──────────────────────────────────────┘
+```
+
+The basic structure uses:
+
+```css
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+```
+
+The Main Section spans all columns:
+
+```css
+.dashboard-main {
+    grid-column: 1 / -1;
+}
+```
+
+---
+
+## 34. Responsive Grid
+
+Grid can be combined with media queries to change the layout based on available screen width.
+
+Example:
+
+```css
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+On a wider screen:
+
+```text
+┌────────┬────────┬────────┐
+│ Card 1 │ Card 2 │ Card 3 │
+└────────┴────────┴────────┘
+```
+
+On a smaller screen:
+
+```text
+┌──────────────┐
+│    Card 1    │
+├──────────────┤
+│    Card 2    │
+├──────────────┤
+│    Card 3    │
+└──────────────┘
+```
+
+The HTML does not need to change.
+
+The Grid structure changes according to the viewport width.
+
+---
+
+## 35. Grid vs Flexbox
+
+Both are layout systems, but they are useful for different situations.
+
+## Flexbox
+
+Primarily one-dimensional:
+
+```text
+Row
+──────────────────────→
+
+OR
+
+Column
+│
+│
+↓
+```
+
+Useful for:
+
+- Navigation bars
+- Aligning items
+- Card rows
+- Sidebar + content
+- Component-level layouts
+
+## Grid
+
+Two-dimensional:
+
+```text
+Columns →
+┌──────┬──────┬──────┐
+│      │      │      │
+├──────┼──────┼──────┤
+│      │      │      │
+└──────┴──────┴──────┘
+        ↓
+       Rows
+```
+
+Useful for:
+
+- Dashboards
+- Page layouts
+- Card grids
+- Complex row/column structures
+
+---
 
 The CSS is intentionally written as a learning playground rather than optimized production CSS.
