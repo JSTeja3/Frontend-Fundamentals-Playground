@@ -1,0 +1,46 @@
+/*A media query lets you apply CSS only when a particular condition is true.*/
+/* The below CSS apply if screesn width is less than or equal to 768px*/
+@media (max-width: 768px) {
+    body {
+        background-color: lightgray;
+    }
+}
+.responsive-test {
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+    .responsive-test {
+        font-size: 16px;
+    }
+}
+/*Relative units*/
+/*Here using direct px will not adjust to changing sizes of screen*/
+/*Therefore we can try relative measures like % which is percentage of containing/parent block */
+/*Similarly vw 1vw = 1% of viewport width*/
+/*Sam with vh 1vh = 1% of viewport height*/
+.responsive-box {
+    width: 80vw; /*80%;*/ /*1000px;*/
+    height: 10vh; /*200px;*/
+    border: 2px solid black;
+
+}
+/*rem- for text size meaning it take value based on root html i.e. if root size is 16px = 1rem then 2rem = 32px*/
+.responsive-box {
+    font-size: 2rem;
+}
+/*We can mark max-width so that the box dont become overly large when screen size is increased because of 80%*/
+/*Also we use margin with auto so that the content remains at center even during screen change*/
+.content-box {
+    width: 80%;
+    max-width:600px;
+    margin: 20px auto;
+    border: 2px solid black;
+    padding: 20px;
+}
+/*To make the text not overflow when window size is changed we can use ellipsis property*/
+.responsive-box {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
