@@ -44,3 +44,95 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/*The Items dont align well during windows change so we change fixed values to reslative*/
+.flex-layout {
+    display: flex;
+    gap: 20px;
+    width: 90%; /*900px;*/
+}
+
+/*But here if the each item has 280px also might not work since its fixed so we can make it a relative value using flex*/
+.flex-item {
+    flex: 1; 
+    /*width: 280px;*/
+    border: 2px solid black;
+    padding: 20px;
+}
+/*Now we can add flex-wrap to push non fitting values to next line*/
+.flex-layout {
+    display: flex;
+    gap: 20px;
+    width: 90%;
+    flex-wrap: wrap;
+}
+/*However before the items move to next line they may shrink to very small size so we can use flex-basis to give initial size*/
+.flex-item {
+    flex: 1 1 200px;/*grow shrink basis*/
+    border: 2px solid black;
+    padding: 20px;
+}
+/*Giving fixed values to images also crop the image when window size is reduced so we give relative values*/
+.image-container {
+    width: 80%;
+    border: 2px solid black;
+    margin: 20px;
+}
+.image-container img {
+    width: 100%; /*800px;*/
+}
+/*Generally we use max-width and auto height to make the original size of image adapt to screen or window size so that if image size is 400*200 then if width becomes 200 then height automatically becomes 100*/
+/*The difference between width and max-width is if only width is given 100% then no matter  what the size of image is it occupies the parents 100% but giving only max-width without width will tell the browser that if image size is only 200px in a container of 800px then keep the same as original but when we resize the window to 100px then image should also take 100px(100%of parent) instead of getting cropped*/
+/*To test above change width property in above css to 500px from 100%*/
+img {
+    max-width: 100%;
+    height: auto;
+}
+/*This CSS is for desktop*/
+.main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+/*Now we change the same based for mobile screen*/
+/* @media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        height: auto;
+        gap: 10px;
+
+    }
+} */
+/*Instead of chnaging direction change to wrap*/
+@media (max-width: 768px) {
+    .main-nav {
+        flex-wrap: wrap;
+        height: auto;/* Override the fixed desktop height */
+    }
+}
+/*Practise*/
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.dashboard-card{
+    border: 2px solid black;
+}
+.dashboard-main{
+    grid-column:1/-1;
+    border: 2px solid black;
+    
+}
+@media (max-width: 768px){
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-main {
+        grid-column: auto;
+    }
+
+
+}
