@@ -287,6 +287,7 @@ Can be used to control horizontal and vertical scroll seperately */
 /*"align-items:space-between"-places first item at start and last item at end and distributes other elements between them*/
 /*"align-items:space-around"-each item gets space around it and each item has same space on its left and right making space at edges small*/
 /*"align-items:space-evenly"-each item is evenly placed*/
+/*"align-items:stretch"-default value is stretch that fills the available contents in the available width of parent*/
 nav{
     display:flex;
     flex-direction: row;
