@@ -37,6 +37,33 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
 // ====================
+// Product List
+// ====================
+
+const products = [
+    {
+        name: "phone",
+        price: 200
+    },
+    {
+        name: "laptop",
+        price: 5000
+    },
+    {
+        name: "TV",
+        price: 1000
+    }
+]
+
+const productList = document.getElementById("productList");
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+const containsInput = document.getElementById("containsInput");
+const maxPrice = document.getElementById("maxPrice");
+const sortOrder = document.getElementById("sortOrder");
+const findByName = document.getElementById("findByName");
+
+// ====================
 // Counter Functions
 // ====================
 
@@ -125,8 +152,149 @@ registrationForm.addEventListener("submit", function (event) {
 
 });
 
+// ====================
+// Product List Functions
+// ====================
 
 
+//Testing array elements
+console.log(products);
+console.log(products[1].name);
+console.log(products[2].price);
+const product4 = {
+    name: "charger",
+    price: 50
+}
+products.push(product4);
+console.log(products[3].name);
 
 
+//To execute as you type
+// searchInput.addEventListener("input", function(){
+//     result = products.filter(function (product) {
+//             return product.name.toLowerCase() === searchInput.value.toLowerCase();
+//         });
+//     console.log(result);
+// });
 
+searchButton.addEventListener("click", search);
+
+function search() {
+    productList.innerHTML = "";
+    let result = [];
+    if (containsInput.checked) {
+        result = products.filter(function (product) {
+            //includes acts as contains
+            return product.name.toLowerCase().includes(searchInput.value.toLowerCase());
+        });
+    }
+    else {
+        result = products.filter(function (product) {
+            return product.name.toLowerCase() === searchInput.value.toLowerCase();
+        });
+    }
+    //using innerHTML
+    if (result.length === 0) {
+        productList.innerHTML += `<p>No products found</p/`;
+    }
+    else {
+        result.forEach(function (product) {
+            productList.innerHTML += `
+        <div>
+            <h3>${product.name}</h3>
+            <p>${product.price}</p>
+        </div>
+    `;
+        });
+    }
+}
+
+//filter helps in filtering the array based on condition
+function filterByPrice() {
+    productList.innerHTML = "";
+    const filterResult = products.filter(function (product) {
+        return product.price <= Number(maxPrice.value);
+    })
+    if (filterResult.length === 0) {
+        productList.innerHTML += `<p>No products found</p>`;
+    }
+    else {
+        filterResult.forEach(function (product) {
+            productList.innerHTML += `
+        <div>
+            <h3>${product.name}</h3>
+            <p>${product.price}</p>
+        </div>
+    `;
+        });
+    }
+}
+
+//sort function helps sort based on condition
+function sortProducts(){
+    productList.innerHTML = "";
+    if(sortOrder.value === "select"){
+        return;
+    }
+    //Makes a Shallow copy that is it creates new copy of array but objects inside array share same reference meaning of object value is cahnged then it changes the value in both the copyies
+    const sortedProducts = [...products];
+    if(sortOrder.value === 'asc'){
+        sortedProducts.sort(function(a, b){
+            return a.price-b.price;
+        });
+    }
+    else{
+        sortedProducts.sort(function(a, b){
+            return b.price-a.price;
+        });
+    }
+    if (sortedProducts.length === 0) {
+        productList.innerHTML += `<p>No products found</p>`;
+    }
+    else {
+        sortedProducts.forEach(function (product) {
+            productList.innerHTML += `
+        <div>
+            <h3>${product.name}</h3>
+            <p>${product.price}</p>
+        </div>
+    `;
+        });
+    }
+}
+
+//map creates a new array using existing array details
+const productPrices = products.map(function(product){
+    return product.price;
+});
+console.log(productPrices);
+
+const details = products.map(function(product){
+    return product.name + " costs ₹" + product.price;
+});
+console.log(details);
+
+//find helps find the object that first matches the condition
+const foundProduct = products.find(function(product){
+    return product.name === "Keyboard";
+});
+
+console.log(foundProduct);
+
+function findProductsName(){
+    productList.innerHTML = "";
+    const matchProduct = products.find(function(product){
+        return product.name.toLowerCase() === findByName.value.toLowerCase();
+    });
+    if(matchProduct === undefined){
+        productList.innerHTML += `<p>No products found</p>`;
+        return;
+    }
+
+    productList.innerHTML += `
+        <div>
+            <h3>${matchProduct.name}</h3>
+            <p>${matchProduct.price}</p>
+        </div>
+    `;
+}

@@ -649,6 +649,93 @@ DOM update
 
 ---
 
+## 18. Objects and Arrays
+
+- Represented products as JavaScript objects.
+- Stored multiple products in an array.
+- Accessed object properties using dot notation.
+- Accessed array items using indexes.
+
+Example:
+
+```javascript
+const products = [
+    { name: "Laptop", price: 50000 },
+    { name: "Phone", price: 30000 },
+    { name: "Keyboard", price: 2000 }
+];
+```
+
+## 19. forEach()
+
+Used `forEach()` to iterate through the products array and display each product on the webpage.
+
+## 20. filter()
+
+Used `filter()` to create a new array containing products that match a condition.
+
+Implemented:
+- Product search using exact name matching.
+- Product search using `includes()` for partial matching.
+- Case-insensitive search using `toLowerCase()`.
+- Price filtering based on a maximum price.
+- Handling cases where no products match.
+
+## 21. sort()
+
+Used `sort()` to arrange products by price.
+
+Implemented:
+- Price: Low to High.
+- Price: High to Low.
+
+Created a copy of the original array using the spread operator before sorting:
+
+```javascript
+const sortedProducts = [...products];
+```
+
+This avoids directly modifying the original products array.
+
+## 22. map()
+
+Used `map()` to transform product data into new arrays.
+
+Implemented:
+- Extracting product prices.
+- Creating product description strings.
+
+## 23. find()
+
+Used `find()` to retrieve the first product matching a condition.
+
+Implemented:
+- Finding a product by name.
+- Handling cases where no matching product exists.
+
+## Interactive Features
+
+- Display all products.
+- Search products by exact name or partial name.
+- Filter products by maximum price.
+- Sort products by price in ascending or descending order.
+- Find a product by name.
+- Display a message when no products are found.
+
+## Key Learnings
+
+- Objects store related data as key-value pairs.
+- Arrays store collections of items.
+- `forEach()` is useful for iterating over array items.
+- `filter()` returns an array of matching items.
+- `map()` returns a new array of transformed values.
+- `find()` returns the first matching item or `undefined`.
+- `sort()` can modify the original array.
+- The spread operator can create a shallow copy of an array.
+- DOM manipulation allows JavaScript to update webpage content dynamically.
+- Event listeners connect user interactions to JavaScript functions.
+
+
 ## Key Takeaways
 
 ### Variables
@@ -735,4 +822,4 @@ The main pattern practiced throughout this phase was:
 
 **User Action → Event → JavaScript → State/Logic → DOM Update → UI Changes**
 
-The Counter, Theme Switcher, and Form Validation features provide a foundation for building more interactive frontend applications.
+The Counter, Theme Switcher, Form Validation, and Search Products features provide a foundation for building more interactive frontend applications.

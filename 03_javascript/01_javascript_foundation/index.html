@@ -61,6 +61,33 @@
         <p id="formMessage"></p>
     </section>
 
+    <section class="products">
+        <h2>Product List</h2>
+        <div class="customProducts">
+            <input type="checkbox" id="containsInput">contains</input>
+            <input type="text" id="searchInput" placeholder="Search products...">
+            <button id="searchButton">Search</button>
+
+            <label for="maxPrice">Maximum Price:</label>
+            <input type="number" id="maxPrice" placeholder="Enter maximum price">
+            <button onclick="filterByPrice()">Filter</button>
+            
+            <label for="sortOrder">Price:</label>
+            <select id="sortOrder">
+                <option value="select"> - select -</option>
+                <option value="asc">Low to High</option>
+                <option value="desc">High to Low</option>
+            </select>
+            <button onclick="sortProducts()">Sort</button>
+
+            <input type="text" id="findByName" placeholder="Find products...">
+            <button onclick="findProductsName()">Find by Name</button>
+            
+        </div>
+
+        <div id="productList"></div>
+    </section>
+
     <script src="script.js"></script>
 </body>
 

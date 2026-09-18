@@ -67,3 +67,19 @@ body {
 #formMessage {
     white-space: pre-line;
 }
+
+
+.products {
+    margin-top: 30px;
+    padding: 30px;
+    border: 2px solid black;
+}
+#productList{
+    white-space: pre-line;
+}
+.customProducts{
+    width:100%;
+    display: flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
