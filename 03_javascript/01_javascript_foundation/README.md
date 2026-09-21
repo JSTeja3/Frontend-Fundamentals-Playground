@@ -813,6 +813,29 @@ Allows different behavior based on values or states.
 ```
 
 ---
+## Additonal Concepts Practiced
+- `let` and `const`
+- Arrow functions
+- Template literals
+- Destructuring
+- Spread operator
+- Optional chaining (`?.`)
+- Nullish coalescing (`??`)
+- Default parameters
+- Array sorting with callback functions
+- Shallow copies using spread syntax
+
+## Additonal Features
+- Refactored product rendering using a reusable function.
+- Displayed product details with optional chaining and fallback values.
+- Added products using the spread operator.
+- Sorted products by price in ascending and descending order.
+- Used destructuring in sorting callbacks.
+
+### Key Learning
+The spread operator creates a shallow copy of an array. The copied array has its own structure, but its objects are still shared references.
+
+The `sort()` method modifies the array it is called on, so sorting a copied array keeps the original array's order unchanged.
 
 ## Goal of This Phase
 
@@ -823,3 +846,4 @@ The main pattern practiced throughout this phase was:
 **User Action → Event → JavaScript → State/Logic → DOM Update → UI Changes**
 
 The Counter, Theme Switcher, Form Validation, and Search Products features provide a foundation for building more interactive frontend applications.
+

@@ -52,7 +52,15 @@ const products = [
     {
         name: "TV",
         price: 1000
+    },
+    {
+        name: "KeyBoard",
+        price: "20000",
+        details: {
+            category: "Electronics"
+        }
     }
+
 ]
 
 const productList = document.getElementById("productList");
@@ -62,6 +70,8 @@ const containsInput = document.getElementById("containsInput");
 const maxPrice = document.getElementById("maxPrice");
 const sortOrder = document.getElementById("sortOrder");
 const findByName = document.getElementById("findByName");
+const productName = document.getElementById("productName");
+const productPrice = document.getElementById("productPrice");
 
 // ====================
 // Counter Functions
@@ -180,87 +190,44 @@ console.log(products[3].name);
 searchButton.addEventListener("click", search);
 
 function search() {
-    productList.innerHTML = "";
-    let result = [];
-    if (containsInput.checked) {
-        result = products.filter(function (product) {
-            //includes acts as contains
-            return product.name.toLowerCase().includes(searchInput.value.toLowerCase());
-        });
-    }
-    else {
-        result = products.filter(function (product) {
-            return product.name.toLowerCase() === searchInput.value.toLowerCase();
-        });
-    }
-    //using innerHTML
-    if (result.length === 0) {
-        productList.innerHTML += `<p>No products found</p/`;
-    }
-    else {
-        result.forEach(function (product) {
-            productList.innerHTML += `
-        <div>
-            <h3>${product.name}</h3>
-            <p>${product.price}</p>
-        </div>
-    `;
-        });
-    }
+    const searchText = searchInput.value.toLowerCase();
+    const result = containsInput.checked ? (products.filter((product) => {// or products.filter(function(product){ ....});
+        //includes acts as contains
+        return product.name.toLowerCase().includes(searchText); 
+    })):(products.filter((product) => {
+        return product.name.toLowerCase() === searchText;
+    })); 
+    
+    displayProducts(result);
 }
 
 //filter helps in filtering the array based on condition
 function filterByPrice() {
-    productList.innerHTML = "";
-    const filterResult = products.filter(function (product) {
+    const filterResult = products.filter((product) => {
         return product.price <= Number(maxPrice.value);
     })
-    if (filterResult.length === 0) {
-        productList.innerHTML += `<p>No products found</p>`;
-    }
-    else {
-        filterResult.forEach(function (product) {
-            productList.innerHTML += `
-        <div>
-            <h3>${product.name}</h3>
-            <p>${product.price}</p>
-        </div>
-    `;
-        });
-    }
+    displayProducts(filterResult);
 }
 
 //sort function helps sort based on condition
 function sortProducts(){
-    productList.innerHTML = "";
     if(sortOrder.value === "select"){
         return;
     }
     //Makes a Shallow copy that is it creates new copy of array but objects inside array share same reference meaning of object value is cahnged then it changes the value in both the copyies
     const sortedProducts = [...products];
     if(sortOrder.value === 'asc'){
-        sortedProducts.sort(function(a, b){
+        sortedProducts.sort((a,b) => {
             return a.price-b.price;
         });
     }
     else{
-        sortedProducts.sort(function(a, b){
-            return b.price-a.price;
+        //Arrow function using destructuring
+        sortedProducts.sort(({ price: priceA }, { price: priceB }) => { 
+            return priceB - priceA;
         });
     }
-    if (sortedProducts.length === 0) {
-        productList.innerHTML += `<p>No products found</p>`;
-    }
-    else {
-        sortedProducts.forEach(function (product) {
-            productList.innerHTML += `
-        <div>
-            <h3>${product.name}</h3>
-            <p>${product.price}</p>
-        </div>
-    `;
-        });
-    }
+    displayProducts(sortedProducts);
 }
 
 //map creates a new array using existing array details
@@ -283,10 +250,12 @@ console.log(foundProduct);
 
 function findProductsName(){
     productList.innerHTML = "";
-    const matchProduct = products.find(function(product){
+    const matchProduct = products.find((product) => {
         return product.name.toLowerCase() === findByName.value.toLowerCase();
     });
-    if(matchProduct === undefined){
+    //optional chaining helps protect from throwing errors if property does not exist
+    console.log(matchProduct?.details?.category);// returns undefined if matchproduct or details value is null
+    if (matchProduct === undefined) {
         productList.innerHTML += `<p>No products found</p>`;
         return;
     }
@@ -298,3 +267,41 @@ function findProductsName(){
         </div>
     `;
 }
+
+//Default Parameters if displayProducts is passed without parameter like displayProducts() then the default value products will be used else the parameter that is passed
+const displayProducts = (productsToDisplay = products) => {
+    productList.innerHTML = "";
+    //using innerHTML
+    if (productsToDisplay.length === 0) {
+        productList.innerHTML += `<p>No products found</p>`;
+    }
+    else {
+        //instead of directly using product in arrow function for product.name we are deconstructing them to individual variables {name, price}
+        productsToDisplay.forEach(({name, price, details}) => {
+        //Template literals - use of `<div... ` and ${...}
+        productList.innerHTML += `
+        <div>
+            <h3>${name}</h3>
+            <p>${price}</p>
+            <p>${details?.category ?? "No category specified"}</p>
+        </div>
+    `;//?? means it gives a fallback message if the value is null or undefined
+        });
+    }
+    
+}
+
+function addProduct(){
+    const newProduct = {
+        name: productName.value,
+        price: Number(productPrice.value)
+    }
+    const updatedProducts = [...products, newProduct];//spread operator
+    if(newProduct.name.trim()===""){
+        displayProducts();
+    }
+    else{
+        displayProducts(updatedProducts);
+    }
+}
+
