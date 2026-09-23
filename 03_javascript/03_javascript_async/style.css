@@ -1,0 +1,12 @@
+.dataView{
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    border: 2px solid black;
+    gap: 20px;
+    align-items:center;
+}
+#fetchBtn{
+    width:50%;
+    height:30px;
+}
