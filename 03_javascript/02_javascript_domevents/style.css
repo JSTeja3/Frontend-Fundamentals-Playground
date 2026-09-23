@@ -1,0 +1,19 @@
+section{
+    width:40%;
+    border:2px solid black;
+    padding: 20px;
+}
+#task{
+    width:100%;
+    display:flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.textInput{
+    flex:1;
+}
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
